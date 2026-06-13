@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>View Reminder</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+<h1>View Reminder</h1>
+<p><strong>Title:</strong> {{ reminder.title }}</p>
+<p><strong>Description:</strong> {{ reminder.description }}</p>
+<p><strong>Date:</strong> {{ reminder.date }}</p>
+<p><strong>Time:</strong> {{ reminder.time }}</p>
+<p><strong>Email:</strong> {{ reminder.email }}</p>
+<a href="{{ url_for('dashboard') }}" class="btn">Back Dashboard</a>
+</div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

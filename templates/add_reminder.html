@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Add Reminder</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+<h1>Add Reminder</h1>
+<form method="POST">
+    <label>Title:</label>
+    <input type="text" name="title" required>
+    <label>Description:</label>
+    <textarea name="description"></textarea>
+    <label>Date:</label>
+    <input type="date" name="date" required>
+    <label>Time:</label>
+    <input type="time" name="time" required>
+    <label>Email (optional for notifications):</label>
+    <input type="email" name="email">
+    <button type="submit">Add Reminder</button>
+</form>
+<a href="{{ url_for('dashboard') }}" class="btn">Back Dashboard</a>
+</div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

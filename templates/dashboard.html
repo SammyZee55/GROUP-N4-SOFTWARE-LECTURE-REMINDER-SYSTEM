@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+<h1>Welcome, {{ session['username'] }}!</h1>
+<button id="darkModeToggle">Toggle Dark Mode</button>
+
+{% if today_reminders %}
+<h2>Today's Reminders</h2>
+<ul id="todayReminders">
+    {% for rem in today_reminders %}
+    <li>{{ rem.title }} at {{ rem.time }}{% if rem.description %} - {{ rem.description }}{% endif %}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<h2>All Reminders</h2>
+<a href="{{ url_for('add_reminder') }}" class="btn">Add Reminder</a>
+<a href="{{ url_for('logout') }}" class="btn">Logout</a>
+
+{% if reminders %}
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Email</th>
+        <th>Actions</th>
+    </tr>
+    {% for rem in reminders %}
+    <tr>
+        <td>{{ rem.title }}</td>
+        <td>{{ rem.description }}</td>
+        <td>{{ rem.date }}</td>
+        <td>{{ rem.time }}</td>
+        <td>{{ rem.email }}</td>
+        <td>
+            <a href="{{ url_for('view_reminder', id=rem.id) }}">View</a> | 
+            <a href="{{ url_for('edit_reminder', id=rem.id) }}">Edit</a> | 
+            <a href="{{ url_for('delete_reminder', id=rem.id) }}" onclick="return confirm('Delete this reminder?')">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No reminders yet.</p>
+{% endif %}
+</div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
