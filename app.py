@@ -54,8 +54,9 @@ with app.app_context():
 
 # ---------------- EMAIL FUNCTION ---------------- #
 def send_email(to_email, subject, body):
-    sender_email = "ndemsamuel5@gmail.com"
-    sender_password = "gcguvvnqbijrghgo"
+    sender_email = os.getenv("EMAIL_USER")
+    sender_password = os.getenv("EMAIL_PASSSWORD")
+
 
     msg = MIMEText(body)
     msg["Subject"] = subject
