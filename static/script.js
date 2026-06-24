@@ -29,7 +29,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (Notification.permission !== "granted") {
         Notification.requestPermission();
     }
-
+    
+    new Notification("Lecture Reminder", {
+        body: "Your lecture starts soon."
+    });
+    
     // Display today's reminders if on dashboard
     const todayRemindersList = document.querySelectorAll("#todayReminders li");
     if (todayRemindersList.length > 0 && Notification.permission === "granted") {
@@ -42,3 +46,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js')
+        .then(() => console.log('Service Worker Registered'));
+}
